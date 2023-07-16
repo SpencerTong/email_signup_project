@@ -69,6 +69,7 @@ app.post("/failure", function(req, res){
   res.redirect('/');
 });
 
+
 //then, we can use that constant to send things over to the mailchimps server using request.write
 
 
