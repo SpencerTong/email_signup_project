@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
 const app = express();
+require('dotenv').config(); //loads any variable in a dotenv file into an environment variable
 
 app.use(express.static("public")); 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -39,10 +40,11 @@ app.post('/', function(req, res){
 
   //options is an object specified in doc. of https.request
   //https://nodejs.org/api/https.html#httpsrequestoptions-callback
+  const apiKEY = process.env.API_KEY;
 
   const options = {
     method: "POST",
-    auth: "spencer1:f192f7f08a13274c5c880b81c188a765-us10"
+    auth: "spencer1:"+apiKEY
     //mailchimps specifies we authenticate by anystring: api key, and we see the html options
   };
 
@@ -71,10 +73,6 @@ app.post("/failure", function(req, res){
 
 
 //then, we can use that constant to send things over to the mailchimps server using request.write
-
-
-//api key
-//f192f7f08a13274c5c880b81c188a765-us10
 
 //list/audience id
 //56554e6346
